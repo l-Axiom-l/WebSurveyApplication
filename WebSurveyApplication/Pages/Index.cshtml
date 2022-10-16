@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+}
+<div class="text-center">
+    <h1>Surveys</h1>
+    <br />
+    <table class="table">
+
+        <thead>
+
+            <th>
+                Id
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th>
+
+            </th>
+
+        </thead>
+
+        <tbody>
+            @foreach (WebSurveyApplication.Models.SurveyModel temp in Model.surveyModels)
+            {
+                <tr>
+                    <td>
+                        @temp.id
+                    </td>
+
+                    <td>
+                        @temp.Name
+                    </td>
+
+                    <td>
+                        @temp.Description
+                    </td>
+
+                    <td>
+                        <a class="btn" style="background-color:seagreen" asp-area="" asp-page="SurveyQuestion"
+                       asp-route-SurveyModelId="@temp.id" asp-route-QuestionId="0">Take Part</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
