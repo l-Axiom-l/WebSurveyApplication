@@ -64,7 +64,7 @@ namespace WebSurveyApplication.Pages
         public IActionResult OnPost()
         {
             HttpContext.Session.SetString("Username", Username);
-            return Page();
+            return RedirectToPage("Index");
         }
     }
 }

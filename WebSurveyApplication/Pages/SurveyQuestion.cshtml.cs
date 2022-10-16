@@ -14,7 +14,7 @@ namespace WebSurveyApplication.Pages
         public int QuestionId { get; set; }
         public string Question { get; set; }
         public string QuestionType { get; set; }
-        public string Answer { get; set; }
+        public string Answer { get; set; } = "";
         public bool AnswerBool { get; set; }
 
         public SurveyQuestionModel(ApplicationDbContext context)
@@ -31,13 +31,16 @@ namespace WebSurveyApplication.Pages
 
         public IActionResult OnPost()
         {
+            Console.WriteLine("Answer:" + AnswerBool);
             SurveyAnswerModel answer = new SurveyAnswerModel();
             answer.Answer = Answer.Length <= 0 ? AnswerBool.ToString() : Answer;
             answer.SurveyModelId = SurveyModelId;
             answer.QuestionId = QuestionId;
             answer.AccountName = HttpContext.Session.GetString("Username");
             _context.AnswerModels.Add(answer);
+            Console.WriteLine("Answer:" + AnswerBool);
             _context.SaveChanges();
+            Console.WriteLine("Answer:" + AnswerBool);
             QuestionId++;
             if (_context.SurveyTableModel.Where(x => x.SurveyModelid == SurveyModelId).Count() > QuestionId)
                 return RedirectToPage("SurveyQuestion", new { SurveyModelId, QuestionId });

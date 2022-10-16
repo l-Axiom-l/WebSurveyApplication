@@ -16,9 +16,9 @@
                 }
                 else
                 {
-                    <button class="btn btn-outline-info form-control" asp-action="@Model.AnswerBool = @true" type="submit">Yes</button>
+                    <input class="btn btn-outline-info form-control" value="True" title="Yes" asp-for="AnswerBool" type="submit"></input>
                     <br />
-                    <button class="btn btn-outline-info form-control" asp-action="@Model.AnswerBool = @false" type="submit">No</button>
+                    <input class="btn btn-outline-info form-control" value="False" title="No" asp-for="AnswerBool" type="submit"></input>
                 }
             </div>
 
