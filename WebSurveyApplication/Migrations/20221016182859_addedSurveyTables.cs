@@ -4,10 +4,24 @@
 
 namespace WebSurveyApplication.Migrations
 {
-    public partial class AddedSurveyTable : Migration
+    public partial class addedSurveyTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AnswerModels",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SurveyModelId = table.Column<int>(type: "int", nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnswerModels", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "SurveyModels",
                 columns: table => new
@@ -30,7 +44,7 @@ namespace WebSurveyApplication.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Question = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QuestionType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SurveyModelid = table.Column<int>(type: "int", nullable: true)
+                    SurveyModelid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,7 +53,8 @@ namespace WebSurveyApplication.Migrations
                         name: "FK_SurveyTableModel_SurveyModels_SurveyModelid",
                         column: x => x.SurveyModelid,
                         principalTable: "SurveyModels",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -50,6 +65,9 @@ namespace WebSurveyApplication.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AnswerModels");
+
             migrationBuilder.DropTable(
                 name: "SurveyTableModel");
 

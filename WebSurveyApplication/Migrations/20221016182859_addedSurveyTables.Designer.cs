@@ -11,8 +11,8 @@ using WebSurveyApplication.Data;
 namespace WebSurveyApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221016165407_addedAnswerTable")]
-    partial class addedAnswerTable
+    [Migration("20221016182859_addedSurveyTables")]
+    partial class addedSurveyTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
