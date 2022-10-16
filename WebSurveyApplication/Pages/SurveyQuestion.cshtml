@@ -12,13 +12,13 @@
             <div class="card-body">
                 @if (Model.QuestionType == "string")
                 {
-                    <input class="form-control" placeholder="Input your Anwer here...">
+                    <input class="form-control" type="text" autocomplete="off" asp-for="Answer" placeholder="Input your Anwer here...">
                 }
                 else
                 {
-                    <button class="btn btn-outline-info form-control" type="submit">Yes</button>
+                    <button class="btn btn-outline-info form-control" asp-action="@Model.AnswerBool = @true" type="submit">Yes</button>
                     <br />
-                    <button class="btn btn-outline-info form-control" type="submit">No</button>
+                    <button class="btn btn-outline-info form-control" asp-action="@Model.AnswerBool = @false" type="submit">No</button>
                 }
             </div>
 
