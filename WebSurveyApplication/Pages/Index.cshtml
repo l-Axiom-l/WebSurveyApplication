@@ -5,6 +5,13 @@
 <div class="text-center">
     <h1>Surveys</h1>
     <br />
+    <form class="mx-auto rounded-3 mt-2 mb-2 pb-2 px-2 pt-2 col-4 bg-light" method="post">
+        <label class="form-label">Username:</label>
+        <input class="form-control" autocomplete="off" placeholder="@Model.Username" asp-for="Username"/>
+        <br />
+        <button class="btn" style="background-color:cornflowerblue" type="submit">Accept</button>
+    </form>
+    <br />
     <table class="table">
 
         <thead>

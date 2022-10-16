@@ -34,6 +34,8 @@ namespace WebSurveyApplication.Pages
             SurveyAnswerModel answer = new SurveyAnswerModel();
             answer.Answer = Answer.Length <= 0 ? AnswerBool.ToString() : Answer;
             answer.SurveyModelId = SurveyModelId;
+            answer.QuestionId = QuestionId;
+            answer.AccountName = HttpContext.Session.GetString("Username");
             _context.AnswerModels.Add(answer);
             _context.SaveChanges();
             QuestionId++;

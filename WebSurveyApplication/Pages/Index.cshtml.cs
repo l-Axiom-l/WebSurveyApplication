@@ -5,6 +5,8 @@ using System.Diagnostics;
 using WebSurveyApplication.Data;
 using WebSurveyApplication.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Session;
+using System.Linq.Expressions;
 
 namespace WebSurveyApplication.Pages
 {
@@ -12,8 +14,10 @@ namespace WebSurveyApplication.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApplicationDbContext _context;
+
+        [BindProperty] public string Username { get; set; }
         [BindProperty(SupportsGet = true)] public List<SurveyModel> surveyModels{ get; set; }
-        [BindProperty(SupportsGet = true)] public static string test { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -43,13 +47,24 @@ namespace WebSurveyApplication.Pages
             _context.SurveyModels.Add(temp);
             _context.SaveChanges();
             Debug.WriteLine("Fuck you");
-            test = test == "HalloWelt" ? "HelloWorld" : "HalloWelt";
             return Page();
         }
 
         public void OnGet()
         {
             surveyModels = _context.SurveyModels.ToList<SurveyModel>();
+            if (HttpContext.Session.GetString("Username") == null)
+                Username = "Anonym";
+            else
+                Username = HttpContext.Session.GetString("Username");
+
+            HttpContext.Session.SetString("Username", Username);
+        }
+
+        public IActionResult OnPost()
+        {
+            HttpContext.Session.SetString("Username", Username);
+            return Page();
         }
     }
 }

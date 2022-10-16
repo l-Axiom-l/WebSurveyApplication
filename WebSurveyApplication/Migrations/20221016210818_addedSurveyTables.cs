@@ -15,7 +15,9 @@ namespace WebSurveyApplication.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SurveyModelId = table.Column<int>(type: "int", nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QuestionId = table.Column<int>(type: "int", nullable: false),
+                    AccountName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

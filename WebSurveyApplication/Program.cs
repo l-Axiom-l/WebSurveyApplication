@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using WebSurveyApplication.Data;
 
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +27,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 

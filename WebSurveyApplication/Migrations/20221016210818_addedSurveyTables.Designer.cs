@@ -11,7 +11,7 @@ using WebSurveyApplication.Data;
 namespace WebSurveyApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221016182859_addedSurveyTables")]
+    [Migration("20221016210818_addedSurveyTables")]
     partial class addedSurveyTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,16 @@ namespace WebSurveyApplication.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
+                    b.Property<string>("AccountName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Answer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SurveyModelId")
                         .HasColumnType("int");
