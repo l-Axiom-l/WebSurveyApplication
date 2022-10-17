@@ -7,6 +7,7 @@
     <UserSecretsId>64a15d06-e02a-45c1-addc-a7693445b9dc</UserSecretsId>
     <Company>AxiomSoftware</Company>
     <Authors>Moritz Brosch</Authors>
+    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
