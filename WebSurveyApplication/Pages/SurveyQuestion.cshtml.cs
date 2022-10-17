@@ -33,7 +33,16 @@ namespace WebSurveyApplication.Pages
         {
             Console.WriteLine("Answer:" + AnswerBool);
             SurveyAnswerModel answer = new SurveyAnswerModel();
-            answer.Answer = Answer.Length < 1 ? AnswerBool.ToString() : Answer;
+
+            try
+            {
+                answer.Answer = Answer.Length < 1 ? AnswerBool.ToString() : Answer;
+            }
+            catch(NullReferenceException ex)
+            {
+                answer.Answer = "Empty";
+            }
+
             answer.SurveyModelId = SurveyModelId;
             answer.QuestionId = QuestionId;
             answer.AccountName = HttpContext.Session.GetString("Username");
